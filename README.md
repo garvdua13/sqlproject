@@ -1,8 +1,8 @@
-**Business Problem
+**Business Problem**
 Netflix hosts thousands of movies and TV shows across multiple genres, countries, and age groups. With a dataset of 8,800+ titles, the challenge is not just storing the data — it is extracting meaningful patterns from it. Netflix needs to understand what kind of content dominates its library, which countries contribute the most, how content has grown over the years, and what ratings and genres are most common among its subscribers.
 Without a structured analytical approach, this volume of data is difficult to interpret and even harder to act on. The goal of this project is to transform raw catalogue data into clear, queryable insights that can inform content strategy and acquisition decisions.
 
-**My Approach
+**My Approach**
 To solve this problem, I used SQL as the primary tool for data extraction, cleaning, and analysis.
 I began by exploring the dataset to understand its structure — identifying key columns like type, country, release_year, rating, duration, and date_added — and checking for NULL values in critical fields before writing any analysis queries.
 From there, I built a set of 15 structured SQL queries that progressively move from basic exploration to more complex business insight questions. These queries make use of:
@@ -16,10 +16,10 @@ Window-style sorting using REGEXP_SUBSTR for more precise ordering of duration-b
 
 The queries cover key analytical areas including content distribution by type and decade, top contributing countries, most prolific directors, rating breakdowns, India-specific contribution, longest movies, and year-on-year content growth.
 
-**Tools Used
+**Tools Used**
 ToolPurposeMySQL / PostgreSQLQuery writing, data exploration, and analysisKaggle DatasetSource data — Netflix Movies and TV ShowsGitHubProject documentation and version control
 
-**Dataset
+**Dataset**
 
 Source: Kaggle — Netflix Movies and TV Shows https://www.kaggle.com/datasets/shivamb/netflix-shows
 Rows: 8,807 titles

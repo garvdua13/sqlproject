@@ -16,13 +16,12 @@ Window-style sorting using REGEXP_SUBSTR for more precise ordering of duration-b
 
 The queries cover key analytical areas including content distribution by type and decade, top contributing countries, most prolific directors, rating breakdowns, India-specific contribution, longest movies, and year-on-year content growth.
 
-**Tools Used**:
-ToolPurposeMySQL / PostgreSQLQuery writing, data exploration, and analysisKaggle DatasetSource data — Netflix Movies and TV ShowsGitHubProject documentation and version control
-
 **Dataset**
 
-Source: Kaggle — Netflix Movies and TV Shows https://www.kaggle.com/datasets/shivamb/netflix-shows
+Source: Kaggle — Netflix Movies and TV Shows https://www.kaggle.com/datasets/shivamb/netflix-shows 
+<br>
 Rows: 8,807 titles
+<br>
 Key columns: show_id, type, title, director, cast, country, date_added, release_year, rating, duration, listed_in
 
 Key Questions

@@ -1,3 +1,49 @@
+Business Problem
+Netflix hosts thousands of movies and TV shows across multiple genres, countries, and age groups. With a dataset of 8,800+ titles, the challenge is not just storing the data — it is extracting meaningful patterns from it. Netflix needs to understand what kind of content dominates its library, which countries contribute the most, how content has grown over the years, and what ratings and genres are most common among its subscribers.
+Without a structured analytical approach, this volume of data is difficult to interpret and even harder to act on. The goal of this project is to transform raw catalogue data into clear, queryable insights that can inform content strategy and acquisition decisions.
+
+My Approach
+To solve this problem, I used SQL as the primary tool for data extraction, cleaning, and analysis.
+I began by exploring the dataset to understand its structure — identifying key columns like type, country, release_year, rating, duration, and date_added — and checking for NULL values in critical fields before writing any analysis queries.
+From there, I built a set of 15 structured SQL queries that progressively move from basic exploration to more complex business insight questions. These queries make use of:
+
+Aggregate functions (COUNT, SUM, ROUND) to summarise content at scale
+GROUP BY and HAVING to segment data by category and filter grouped results
+CASE WHEN for conditional aggregation — such as comparing Movies vs TV Shows per country in a single query
+Subqueries for percentage calculations and filtering with NOT IN
+String functions (SUBSTR, REPLACE, LIKE, CAST) to handle columns where data is stored as text rather than numeric values
+Window-style sorting using REGEXP_SUBSTR for more precise ordering of duration-based results
+
+The queries cover key analytical areas including content distribution by type and decade, top contributing countries, most prolific directors, rating breakdowns, India-specific contribution, longest movies, and year-on-year content growth.
+
+Tools Used
+ToolPurposeMySQL / PostgreSQLQuery writing, data exploration, and analysisKaggle DatasetSource data — Netflix Movies and TV ShowsGitHubProject documentation and version control
+
+Dataset
+
+Source: Kaggle — Netflix Movies and TV Shows https://www.kaggle.com/datasets/shivamb/netflix-shows
+Rows: 8,807 titles
+Key columns: show_id, type, title, director, cast, country, date_added, release_year, rating, duration, listed_in
+
+
+Key Questions Answered
+
+How many Movies vs TV Shows are on Netflix?
+How many titles fall in each decade in Netflix's library?
+Which countries produce the most content on Netflix?
+Who are the most prolific directors on Netflix?
+What is the distribution of content ratings on Netflix?
+How much content does India contribute to Netflix?
+What percentage of Netflix's library is Movies vs TV Shows?
+How many seasons do TV Shows on Netflix typically run?
+Which years had the highest number of titles released?
+What type of content dominates each country — Movies or TV Shows?
+How many titles were added to Netflix each year?
+Which ratings are most common for Movies specifically?
+What are the longest movies available on Netflix?
+Which directors made movies released on or after 2010?
+Which countries produce only Movies and no TV Shows on Netflix?
+
 1. How many Movies vs TV Shows are on Netflix?
 <img width="693" height="172" alt="image" src="https://github.com/user-attachments/assets/ed924fba-5e09-49b6-b51b-d164b50c0b54" />
 <img width="699" height="133" alt="image" src="https://github.com/user-attachments/assets/9cd61c05-ccbb-445d-8f7b-9b7a1a46fee3" />

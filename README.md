@@ -1,4 +1,5 @@
 1.How many Movies vs TV Shows are on Netflix?
+
 <img width="693" height="172" alt="image" src="https://github.com/user-attachments/assets/ed924fba-5e09-49b6-b51b-d164b50c0b54" />
 <img width="699" height="133" alt="image" src="https://github.com/user-attachments/assets/9cd61c05-ccbb-445d-8f7b-9b7a1a46fee3" />
 <br>

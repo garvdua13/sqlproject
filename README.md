@@ -4,7 +4,6 @@
 <br>
 Netflix's library is dominated by Movies, making up nearly 70% of all content. With 6,131 movies compared to 2,676 TV Shows, it is clear that Netflix's catalogue leans heavily towards film. However, TV Shows still represent nearly 1 in 3 titles, reflecting Netflix's growing investment in original and licensed series to drive subscriber retention.
 <br>
-
 2. How many titles fall in each decade in Netflix's library?
 <img width="692" height="177" alt="image" src="https://github.com/user-attachments/assets/b99b049b-3153-4de1-bfc7-47ba7f174c81" />
 <img width="721" height="494" alt="image" src="https://github.com/user-attachments/assets/359f4e63-b98d-4212-bedb-8486c2b86196" />

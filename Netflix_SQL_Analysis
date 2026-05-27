@@ -1,0 +1,159 @@
+-- How many Movies vs TV Shows are on Netflix?
+SELECT type,
+       COUNT(*) AS total_count
+FROM netflix_titles
+GROUP BY type
+ORDER BY total_count DESC;
+
+
+-- How many movies and shows fall in each decade in Netflix's library?
+SELECT CONCAT(FLOOR(release_year / 10) * 10, 's') AS decade,
+       COUNT(*) AS movies_shows_count
+FROM netflix_titles
+WHERE release_year >= 1940
+GROUP BY CONCAT(FLOOR(release_year / 10) * 10, 's')
+ORDER BY decade;
+
+
+-- Which countries produce the most content on Netflix?
+SELECT country,
+       COUNT(*) AS total_titles
+FROM netflix_titles
+WHERE country IS NOT NULL
+GROUP BY country
+ORDER BY total_titles DESC
+LIMIT 10;
+
+
+-- Who are the most prolific directors on Netflix?
+SELECT director,
+       COUNT(*) AS total_titles
+FROM netflix_titles
+WHERE director IS NOT NULL
+GROUP BY director
+ORDER BY total_titles DESC
+LIMIT 10;
+
+
+-- What is the distribution of content ratings on Netflix?
+SELECT rating,
+       COUNT(*) AS total_count
+FROM netflix_titles
+WHERE rating IS NOT NULL
+GROUP BY rating
+ORDER BY total_count DESC;
+
+
+-- How much content does India contribute to Netflix?
+SELECT type,
+       COUNT(*) AS total_count
+FROM netflix_titles
+WHERE country LIKE '%India%'
+GROUP BY type
+ORDER BY total_count DESC;
+
+
+-- What percentage of Netflix's library is Movies vs TV Shows?
+SELECT type,
+       COUNT(*) AS total,
+       ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM netflix_titles), 2) AS percentage
+FROM netflix_titles
+GROUP BY type;
+
+
+-- How many seasons do TV Shows on Netflix typically run?
+SELECT duration,
+       COUNT(*) AS total_shows
+FROM netflix_titles
+WHERE type = 'TV Show'
+  AND duration IS NOT NULL
+GROUP BY duration
+ORDER BY total_shows DESC,
+         CAST(REGEXP_SUBSTR(duration, '[0-9]+') AS UNSIGNED) ASC
+LIMIT 10;
+
+
+-- Which years had the highest number of titles released?
+SELECT release_year,
+       COUNT(*) AS titles_released
+FROM netflix_titles
+WHERE release_year IS NOT NULL
+GROUP BY release_year
+ORDER BY titles_released DESC
+LIMIT 10;
+
+
+-- What type of content dominates each country (Movies or TV Shows)?
+SELECT country,
+       SUM(CASE WHEN type = 'Movie'   THEN 1 ELSE 0 END) AS total_movies,
+       SUM(CASE WHEN type = 'TV Show' THEN 1 ELSE 0 END) AS total_tvshows
+FROM netflix_titles
+WHERE country IS NOT NULL
+GROUP BY country
+HAVING SUM(CASE WHEN type = 'Movie'   THEN 1 ELSE 0 END) > 0
+   AND SUM(CASE WHEN type = 'TV Show' THEN 1 ELSE 0 END) > 0
+ORDER BY (SUM(CASE WHEN type = 'Movie'   THEN 1 ELSE 0 END)
+        + SUM(CASE WHEN type = 'TV Show' THEN 1 ELSE 0 END)) DESC
+LIMIT 10;
+
+
+-- How many titles were added to Netflix each year?
+SELECT YEAR(STR_TO_DATE(TRIM(date_added), '%M %d, %Y')) AS year_added,
+       COUNT(*) AS titles_added
+FROM netflix_titles
+WHERE date_added IS NOT NULL
+GROUP BY year_added
+ORDER BY year_added DESC;
+
+
+-- Which ratings are most common for Movies specifically?
+SELECT rating,
+       COUNT(*) AS total_count
+FROM netflix_titles
+WHERE type = 'Movie'
+  AND rating IS NOT NULL
+GROUP BY rating
+ORDER BY total_count DESC
+LIMIT 5;
+
+
+-- What are the longest movies available on Netflix?
+SELECT title,
+       director,
+       country,
+       CAST(REPLACE(duration, ' min', '') AS UNSIGNED) AS runtime_min
+FROM netflix_titles
+WHERE type = 'Movie'
+  AND duration IS NOT NULL
+ORDER BY runtime_min DESC
+LIMIT 10;
+
+
+-- Finding directors and their movies released on or after 2010
+SELECT DISTINCT title,
+       director,
+       release_year,
+       rating
+FROM netflix_titles
+WHERE type = 'Movie'
+  AND release_year >= 2010
+  AND director IS NOT NULL
+ORDER BY release_year DESC
+LIMIT 20;
+
+
+-- Which countries produce only Movies and no TV Shows on Netflix?
+SELECT country,
+       COUNT(*) AS total_movies
+FROM netflix_titles
+WHERE type = 'Movie'
+  AND country IS NOT NULL
+  AND country NOT IN (
+      SELECT DISTINCT country
+      FROM netflix_titles
+      WHERE type = 'TV Show'
+        AND country IS NOT NULL
+  )
+GROUP BY country
+ORDER BY total_movies DESC
+LIMIT 10;
